@@ -1,0 +1,2 @@
+UTC_OFFSET = 1
+DST_RULE = "EU"
