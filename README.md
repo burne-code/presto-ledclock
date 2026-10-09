@@ -7,7 +7,8 @@ always-lit markers at every five-second position. Time is synced over NTP.
 
 ## Install
 
-1. Copy `secrets.example.py` to `secrets.py` and fill it in (Wi-Fi, `UTC_OFFSET`, `DST_RULE`).
+1. Copy `secrets.example.py` to `secrets.py` and fill it in (Wi-Fi, `UTC_OFFSET`, `DST_RULE`,
+   and optionally `NTP_SERVER`, e.g. a local time server; `pool.ntp.org` is the fallback).
 2. Copy both files to the Presto, e.g. with [mpremote](https://docs.micropython.org/en/latest/reference/mpremote.html):
 
    ```bash

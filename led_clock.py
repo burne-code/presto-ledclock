@@ -62,6 +62,11 @@ try:
     from secrets import DST_RULE  # "EU", "US" or None
 except ImportError:
     DST_RULE = None
+try:
+    from secrets import NTP_SERVER  # e.g. a local server; None: public pool only
+except ImportError:
+    NTP_SERVER = None
+NTP_FALLBACK = "pool.ntp.org"
 
 # ---------------------------------------------------------------- display
 
@@ -309,13 +314,22 @@ def retry_wifi():
 
 
 def sync_time():
-    try:
-        ntptime.settime()
-    except Exception as e:  # noqa: BLE001 - keep ticking on the RTC
-        log("ntp failed", repr(e))
-        return False
-    log("time synced")
-    return True
+    """Try NTP_SERVER first, then the public pool."""
+    error = None
+    for host in (NTP_SERVER, NTP_FALLBACK):
+        if not host:
+            continue
+        ntptime.host = host
+        try:
+            ntptime.settime()
+        except Exception as e:  # noqa: BLE001 - try the next one, else keep the RTC
+            print("ntp", host, "failed:", e)
+            error = e
+            continue
+        log("time synced from", host)
+        return True
+    log("ntp failed", repr(error))
+    return False
 
 
 # ---------------------------------------------------------------- sensors
