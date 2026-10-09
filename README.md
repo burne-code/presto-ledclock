@@ -1,7 +1,7 @@
 # Presto LED Clock
 
 A digital-analog LED wall clock for the [Pimoroni Presto](https://shop.pimoroni.com/products/presto),
-styled after the Masterclock CLDNTD12: slanted 7-segment `HH:MM` with faint unlit
+styled after the [Masterclock CLDNTD12](https://www.masterclock.com/digital-analog-clock-cldntd12.html): slanted 7-segment `HH:MM` with faint unlit
 segments, a ring of 60 LED dashes that fills clockwise with the seconds, and
 always-lit markers at every five-second position. Time is synced over NTP.
 
