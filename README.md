@@ -39,6 +39,9 @@ Tap the screen to cycle colour schemes. Options live at the top of `led_clock.py
 Until the time has synced over NTP, a dim status line under the digits says why
 (e.g. `wifi failed NO_AP_FOUND` or `ntp failed ...`); it retries every minute.
 
+Presto LED Clock uses a configureable NTP server in secrets.py. Setting NTP_SERVER=none will make
+it use pool.ntp.org. 
+
 ## Presto gotchas found along the way
 
 - Keep a reference to the `Transform` passed to `vector.set_transform()`; a
